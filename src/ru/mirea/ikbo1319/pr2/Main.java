@@ -1,4 +1,4 @@
-package ru.mirea.ikbo1319;
+package ru.mirea.ikbo1319.pr2;
 
 public class Main {
 
