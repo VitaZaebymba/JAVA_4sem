@@ -1,0 +1,2 @@
+ru/mirea/Main.java
+ ru.mirea.Main
