@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Start</title>
+</head>
+<style>
+    h2 {
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: green;
+   }
+   h3 {
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: dark;
+   }
+   h4 {
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: violet;
+   }
+</style>
+<body>
+<div>
+    <h2>Add groups and students</h2>
+    <form method="post" action="/home/addstudent">
+        <label>
+            <input type="text" name="groupName" placeholder="Group"/>
+        </label>
+        <label>
+            <input type="text" name="studentFirstName"
+                   placeholder="First name"/>
+        </label>
+        <label>
+            <input type="text" name="studentMiddleName"
+                   placeholder="Middle name"/>
+        </label>
+        <label>
+            <input type="text" name="studentLastName"
+                   placeholder="Last name"/>
+        </label>
+
+
+        <button type="submit">Add student</button>
+    </form>
+    {{#groups.entrySet}}
+        <h3>Group name
+            {{key.groupName}}</h3>
+        <ul>
+            <h4>Students are:</h4>
+            {{#value}}
+                <li>
+                    <form method="post" action="/home/delete">
+                        {{lastName}} {{firstName}} {{middleName}}
+                        <button type="submit" name="studentId" value="{{id}}">
+                            Delete
+                        </button>
+                    </form>
+                </li>
+            {{/value}}
+        </ul>
+    {{/groups.entrySet}}
+    {{^groups.entrySet}}
+        <h3>There are no groups</h3>
+    {{/groups.entrySet}}
+</div>
+</body>
+</html>

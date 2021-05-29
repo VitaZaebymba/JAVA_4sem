@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Start</title>
+</head>
+<style>
+    h2 {
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: green;
+   }
+   h3 {
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: dark;
+   }
+   h4 {
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: violet;
+   }
+</style>
+<body>
+<div>
+    <h2>Add groups and students</h2>
+    <form name="addStudent" method="post" action="/students/add">
+        <label>
+            <input type="text" name="groupName" placeholder="Group"/>
+        </label>
+        <label>
+            <input type="text" name="studentFirstName"
+                   placeholder="First name"/>
+        </label>
+        <label>
+            <input type="text" name="studentMiddleName"
+                   placeholder="Middle name"/>
+        </label>
+        <label>
+            <input type="text" name="studentLastName"
+                   placeholder="Last name"/>
+        </label>
+        <button type="submit">Add</button>
+    </form>
+    {{#groups}}
+        <h2>Group name {{groupName}}</h2>
+        <form method="post" action="/groups/{{id}}/delete">
+            <button type="submit">
+                Delete group
+            </button>
+        </form>
+        <form method="post" action="/groups/{{id}}">
+            <button type="submit">
+                Show only this group
+            </button>
+        </form>
+        <ul>
+            <h4>Students are</h4>
+            {{#students}}
+                <li>
+                    <form method="post" action="/students/{{id}}/delete">
+                        {{lastName}} {{firstName}} {{middleName}}
+                        <button type="submit">
+                            Delete student
+                        </button>
+                    </form>
+                </li>
+            {{/students}}
+        </ul>
+    {{/groups}}
+    {{^groups}}
+        <h3>There are no groups</h3>
+    {{/groups}}
+</div>
+</body>
+</html>
